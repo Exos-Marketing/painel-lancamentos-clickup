@@ -1,0 +1,101 @@
+{
+  "dashboard_name_default": "Lançamentos - {CLIENTE}",
+  "grid_cols": 12,
+  "row_height": 40,
+  "_comment": "Template fixo do Painel de Projetos de Lançamentos da Exos (9 widgets). Cada widget tem um 'role' que o resolve_lists.py casa com as listas equivalentes do workspace de destino, por NOME (IDs mudam por workspace). type: 3=pizza por status, 16=cálculo/número, 20=Metas(Goals). Os filtros são genéricos (status/dueDate) — os filtros por custom field Cliente/Evento da origem NÃO entram, pois esses campos não existem em outro workspace.",
+  "widgets": [
+    {
+      "role": "projetos_painel",
+      "title": "Projetos em Andamento",
+      "type": 16,
+      "pre_made": "custom_calculation",
+      "location_role": "painel_lancamentos",
+      "x": 0, "y": 0, "cols": 2, "rows": 4,
+      "calculation": { "field": "task_count", "func": "count", "unit": "", "unit_side": "left" },
+      "filters": { "status_open": true, "overdue": false }
+    },
+    {
+      "role": "marcos_fases",
+      "title": "Marcos Andamento",
+      "type": 16,
+      "pre_made": "statuses_calc_open_tasks",
+      "location_role": "fases",
+      "x": 0, "y": 4, "cols": 2, "rows": 5,
+      "calculation": { "field": "task_count", "func": "count", "unit": "tarefas em andamento", "unit_side": "bottom" },
+      "filters": { "status_open": true, "overdue": false }
+    },
+    {
+      "role": "atraso_fases",
+      "title": "Em Atraso",
+      "type": 16,
+      "pre_made": "statuses_calc_open_tasks",
+      "location_role": "fases",
+      "x": 0, "y": 9, "cols": 2, "rows": 5,
+      "calculation": { "field": "task_count", "func": "count", "unit": "tarefas em andamento", "unit_side": "bottom" },
+      "filters": { "status_open": true, "overdue": true }
+    },
+    {
+      "role": "copywriter",
+      "title": "Copywriter",
+      "type": 3,
+      "pre_made": "statuses_pie_tasks",
+      "location_role": "copy",
+      "x": 2, "y": 0, "cols": 3, "rows": 7,
+      "filters": { "status_open": false, "overdue": false }
+    },
+    {
+      "role": "gestao_campanha",
+      "title": "Gestão de Campanha",
+      "type": 3,
+      "pre_made": "statuses_pie_tasks",
+      "location_role": "gestao_campanha",
+      "x": 2, "y": 7, "cols": 3, "rows": 7,
+      "filters": { "status_open": false, "overdue": false }
+    },
+    {
+      "role": "design",
+      "title": "Criação e Designer",
+      "type": 3,
+      "pre_made": "statuses_pie_tasks",
+      "location_role": "design",
+      "x": 5, "y": 0, "cols": 3, "rows": 7,
+      "filters": { "status_open": false, "overdue": false }
+    },
+    {
+      "role": "agendamento",
+      "title": "Agendamento e Disparos",
+      "type": 3,
+      "pre_made": "statuses_pie_tasks",
+      "location_role": "agendamento",
+      "x": 5, "y": 7, "cols": 3, "rows": 7,
+      "filters": { "status_open": false, "overdue": false }
+    },
+    {
+      "role": "paginas",
+      "title": "Páginas",
+      "type": 3,
+      "pre_made": "statuses_pie_tasks",
+      "location_role": "paginas",
+      "x": 8, "y": 0, "cols": 4, "rows": 7,
+      "filters": { "status_open": false, "overdue": false }
+    },
+    {
+      "role": "metas",
+      "title": "Metas",
+      "type": 20,
+      "pre_made": "goal",
+      "location_role": null,
+      "x": 8, "y": 7, "cols": 4, "rows": 7,
+      "filters": { "status_open": false, "overdue": false }
+    }
+  ],
+  "list_roles": {
+    "copy": ["Copywriting"],
+    "design": ["Design & Criação", "Design e Criação"],
+    "paginas": ["Produção de Páginas"],
+    "agendamento": ["Agendamentos, Publicações & Disparos", "Agendamento"],
+    "gestao_campanha": ["Gestão de Campanhas", "Gestão de Campanha"],
+    "painel_lancamentos": ["Painel Projeto Lançamentos"],
+    "fases": ["Concepção", "Setup", "Captação", "Aquecimento", "Evento", "Lançamento", "Downsell", "Pós Venda"]
+  }
+}
